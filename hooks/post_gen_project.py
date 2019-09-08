@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import os
-from shutil import which
-from subprocess import Popen, PIPE
+# from shutil import which
+# from subprocess import Popen, PIPE
 
 enable_swagger = '{{cookiecutter.enable_swagger}}' == 'y'
 
@@ -35,13 +35,14 @@ if not enable_swagger:
     dependencies_to_remove.append("sanic-openapi")
 
 for req_type in ["", "-dev", "-doc"]:
-    cleanup_requirements_file("requirements{}.txt".format(req_type), dependencies_to_remove)
+    cleanup_requirements_file(
+        "requirements{}.txt".format(req_type), dependencies_to_remove)
 
-if which("black"):
-    process = Popen(["black", "."],
-                    stderr=PIPE, stdout=PIPE)
-    _, _ = process.communicate()
+# if which("black"):
+#     process = Popen(["black", "."],
+#                     stderr=PIPE, stdout=PIPE)
+#     _, _ = process.communicate()
 
-if which("isort"):
-    process = Popen(["isort", "-rc", "."], stdout=PIPE, stderr=PIPE)
-    _, _ = process.communicate()
+# if which("isort"):
+#     process = Popen(["isort", "-rc", "."], stdout=PIPE, stderr=PIPE)
+#     _, _ = process.communicate()
